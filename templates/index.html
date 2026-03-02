@@ -7,43 +7,72 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">BG Remover</div>
-        <nav>
-            <a href="#">Início</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
-        </nav>
-    </header>
+<header>
+    <div class="logo">BG Remover</div>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </nav>
+</header>
 
-    <main>
-        <div class="card">
+<main>
+    <div class="card">
 
-            <h1>Remova o fundo da sua imagem</h1>
-            <p class="subtitle">Envie uma imagem e receba instantaneamente com fundo transparente.</p>
+        <h1>Remova o fundo da sua imagem</h1>
+        <p class="subtitle">Envie uma imagem e receba instantaneamente com fundo transparente.</p>
 
-            <form method="POST" enctype="multipart/form-data">
-                <label class="upload-box">
-                    <input type="file" name="image" required>
-                    <span>Clique para selecionar uma imagem</span>
-                </label>
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            
+            <label class="upload-box">
+                <input type="file" name="image" id="imageInput" required>
+                <span id="uploadText">Clique para selecionar uma imagem</span>
+            </label>
 
-                <button type="submit" class="primary-btn">
-                    Remover Fundo
-                </button>
-            </form>
+            <!-- Preview -->
+            <img id="preview" class="preview-img" style="display:none;"/>
 
-            {% if download_file %}
-            <div class="result">
-                <p>✨ Sua imagem está pronta!</p>
-                <a href="{{ url_for('download', file=download_file) }}">
-                    <button class="download-btn">Baixar Imagem</button>
-                </a>
-            </div>
-            {% endif %}
+            <button type="submit" class="primary-btn" id="submitBtn">
+                Remover Fundo
+            </button>
 
-        </div>
-    </main>
+            <p id="loadingText" class="loading-text" style="display:none;">
+                ⏳ Processando imagem...
+            </p>
+
+        </form>
+
+    </div>
+</main>
+
+<script>
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+const uploadText = document.getElementById("uploadText");
+const form = document.getElementById("uploadForm");
+const loadingText = document.getElementById("loadingText");
+const submitBtn = document.getElementById("submitBtn");
+
+input.addEventListener("change", function() {
+    if (this.files && this.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+        }
+
+        reader.readAsDataURL(this.files[0]);
+        uploadText.innerText = "Imagem selecionada: " + this.files[0].name;
+    }
+});
+
+form.addEventListener("submit", function() {
+    loadingText.style.display = "block";
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Processando...";
+});
+</script>
 
 </body>
 </html>

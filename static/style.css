@@ -122,3 +122,16 @@ main {
 .result {
     margin-top: 25px;
 }
+
+.preview-img {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.loading-text {
+    margin-top: 15px;
+    color: #00ffcc;
+    font-weight: bold;
+}
