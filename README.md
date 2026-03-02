@@ -294,14 +294,4 @@ Desenvolvedor Back-End
 
 ---
 
-## 📌 Possíveis Melhorias Futuras
-
-- Implementar sistema de autenticação
-- Adicionar preview da imagem antes do download
-- Criar fila de processamento para múltiplos usuários
-- Hospedar em servidor cloud (Render, Railway, AWS)
-- Melhorar UI/UX com animações e feedback visual
-
----
-
 ⭐ Se este projeto foi útil para você, considere dar uma estrela no repositório!
