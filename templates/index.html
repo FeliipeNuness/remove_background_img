@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>BG Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">BG Remover</div>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+
+            <h1>Remova o fundo da sua imagem</h1>
+            <p class="subtitle">Envie uma imagem e receba instantaneamente com fundo transparente.</p>
+
+            <form method="POST" enctype="multipart/form-data">
+                <label class="upload-box">
+                    <input type="file" name="image" required>
+                    <span>Clique para selecionar uma imagem</span>
+                </label>
+
+                <button type="submit" class="primary-btn">
+                    Remover Fundo
+                </button>
+            </form>
+
+            {% if download_file %}
+            <div class="result">
+                <p>✨ Sua imagem está pronta!</p>
+                <a href="{{ url_for('download', file=download_file) }}">
+                    <button class="download-btn">Baixar Imagem</button>
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+    </main>
+
+</body>
+</html>
